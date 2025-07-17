@@ -1,0 +1,44 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.38.0.0
+Copyright (C) 2022 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Sahithi Chitrala, pantech solutions, LIC=----
+ 
+Tool Versions:
+Toolchain:       PK51 Prof. Develpers Kit  Version: 9.60.7.0
+Toolchain Path:  C:\Keil_v5\C51\BIN
+C Compiler:      C51.exe V9.60.7.0
+Assembler:       A51.exe V8.2.7.0
+Linker/Locator:  BL51.exe V6.22.4.0
+Library Manager: LIB51.exe V4.30.1.0
+Hex Converter:   OH51.exe V2.7.0.0
+CPU DLL:         S8051.DLL V3.125.1.0
+Dialog DLL:      DP51.DLL V2.69.0.0 
+<h2>Project:</h2>
+E:\lab\UARTINIT\uart.uvproj
+Project File Date:  07/10/2025
+
+<h2>Output:</h2>
+Rebuild target 'Target 1'
+compiling uart.c...
+uart.c(9): error C132: 'uart_init': not in formal parameter list
+uart.c(9): error C141: syntax error near '{', expected ';'
+uart.c(10): error C136: 'TMOD': 'void' on variable
+uart.c(10): error C244: 'TMOD': can't initialize, bad type or class
+uart.c(10): error C136: 'TMOD': 'void' on variable
+uart.c(10): error C132: 'TMOD': not in formal parameter list
+uart.c(11): error C244: 'TH1': can't initialize, bad type or class
+uart.c(11): error C132: 'TH1': not in formal parameter list
+uart.c(12): error C244: 'SCON': can't initialize, bad type or class
+uart.c(12): error C132: 'SCON': not in formal parameter list
+uart.c(13): error C244: 'TR1': can't initialize, bad type or class
+uart.c(13): error C132: 'TR1': not in formal parameter list
+uart.c(15): error C141: syntax error near '}', expected 'hdata'
+Target not created.
+Build Time Elapsed:  00:00:01
+</pre>
+</body>
+</html>

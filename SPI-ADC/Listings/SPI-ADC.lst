@@ -1,0 +1,121 @@
+C51 COMPILER V9.60.0.0   SPI_ADC                                                           06/30/2021 16:05:59 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE SPI_ADC
+OBJECT MODULE PLACED IN .\Objects\SPI-ADC.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE SPI-ADC.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\S
+                    -PI-ADC.lst) TABS(2) OBJECT(.\Objects\SPI-ADC.obj)
+
+line level    source
+
+   1          
+   2          #include<reg52.h>
+   3          #include<stdio.h>
+   4          
+   5          sbit ADC_CS   =  P2^4;
+   6          sbit ADC_CLK  =  P2^5;
+   7          sbit ADC_DO   =  P2^6;
+   8          sbit ADC_DI   =  P2^7;
+   9          
+  10          
+  11          void InitSerial(void);
+  12          void write_adc_byte(char data_byte);
+  13          unsigned int ReadADC(unsigned char channel);
+  14          void DelayMs(unsigned int count);
+  15          
+  16          //---------------------------------------
+  17          // Initialize serial port
+  18          //---------------------------------------
+  19          void InitSerial(void)
+  20          {
+  21   1          SCON = 0x52;    // setup serial port control 
+  22   1          TMOD = 0x20;    // hardware (9600 BAUD @11.05592MHZ) 
+  23   1          TH1  = 0xFD;    // TH1
+  24   1        TR1  = 1;     // Timer 1 on
+  25   1      }
+  26          
+  27          
+  28          //---------------------------------------
+  29          // read analog from ADC
+  30          // Single end mode(2 channel)
+  31          //---------------------------------------
+  32          unsigned int ReadADC(unsigned char channel)
+  33          {
+  34   1           unsigned char i,k;
+  35   1           unsigned int AdcResult;  // 12 bit
+  36   1        
+  37   1           ADC_CS=0;              // Active chip select
+  38   1           k++;               // Delay about 1 uS
+  39   1           ADC_CLK=0;             // make clock low first   
+  40   1           k++;k++; 
+  41   1           channel = channel? 0xA0 : 0xD0;  //Refer Datasheet of MCP3202 - in Single Mode for Independent Channel 
+             -Processing
+  42   1           k++;k++;             // delay about 2 uS
+  43   1      
+  44   1           /*--- write command 4 bit ----------*/
+  45   1           for(i=0; i< 4;i++) 
+  46   1           {
+  47   2              //ADC_DI = (channel & 0x80) != 0;
+  48   2             ADC_DI = (channel & 0x80);
+  49   2              channel<<=1;
+  50   2              ADC_CLK=1;
+  51   2              k++;k++;          // delay about 2 uS
+  52   2              ADC_CLK=0;
+  53   2           }
+C51 COMPILER V9.60.0.0   SPI_ADC                                                           06/30/2021 16:05:59 PAGE 2   
+
+  54   1        
+  55   1           k++;k++;           // delay about 2 uS
+  56   1           ADC_CLK=1;
+  57   1           k++;k++;           // delay about 2 uS
+  58   1           ADC_CLK=0;
+  59   1           k++;k++;           // delay about 2 uS 
+  60   1        
+  61   1           /* --- read ADC result 12 bit -------- */
+  62   1           AdcResult=0;
+  63   1           for(i=0;i<12;i++) 
+  64   1           {
+  65   2                ADC_CLK=1;
+  66   2                k++;k++;        /// delay about 2 uS 
+  67   2                AdcResult<<=1;
+  68   2              AdcResult=AdcResult | (ADC_DO & 0x01);         
+  69   2             ADC_CLK=0;
+  70   2                k++;k++;        /// delay about 2 uS
+  71   2           }
+  72   1           ADC_CS=1;
+  73   1           return(AdcResult); 
+  74   1      }
+  75          
+  76          
+  77          //---------------------------------------
+  78          // Main program
+  79          //---------------------------------------
+  80          void main(void)
+  81          {
+  82   1        unsigned int CH0, CH1;
+  83   1        InitSerial();     // Initialize serial port
+  84   1        putchar(0x0C);  // clear Hyper terminal
+  85   1        while(1)
+  86   1        {                         
+  87   2          CH0 = ReadADC (0);
+  88   2          printf("Ch 0 : %4d  \n\r", CH0);
+  89   2        }
+  90   1      }
+*** WARNING C280 IN LINE 82 OF SPI-ADC.c: 'CH1': unreferenced local variable
+  91          
+  92          
+  93          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    165    ----
+   CONSTANT SIZE    =     15    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       5
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

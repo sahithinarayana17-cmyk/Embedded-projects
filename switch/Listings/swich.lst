@@ -1,0 +1,24 @@
+C51 COMPILER V9.60.7.0   SWICH                                                             07/02/2025 14:01:58 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE SWICH
+OBJECT MODULE PLACED IN .\Objects\swich.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE swich.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\swi
+                    -ch.lst) TABS(2) OBJECT(.\Objects\swich.obj)
+
+line level    source
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   ----    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

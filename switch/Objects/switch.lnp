@@ -1,0 +1,4 @@
+".\Objects\switch.obj",
+".\Objects\swich.obj" 
+TO ".\Objects\switch" 
+PRINT(".\Listings\switch.m51")

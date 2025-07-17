@@ -1,0 +1,4 @@
+".\Objects\STARTUP.obj",
+".\Objects\SPI-ADC.obj" 
+TO ".\Objects\SPI-ADC" 
+PRINT(".\Listings\SPI-ADC.m51") RAMSIZE(256) 

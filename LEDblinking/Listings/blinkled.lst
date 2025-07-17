@@ -1,0 +1,42 @@
+C51 COMPILER V9.60.7.0   BLINKLED                                                          07/02/2025 13:40:40 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE BLINKLED
+OBJECT MODULE PLACED IN .\Objects\blinkled.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE blinkled.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\
+                    -blinkled.lst) TABS(2) OBJECT(.\Objects\blinkled.obj)
+
+line level    source
+
+   1          #include<reg51.h>   // contains registers for 8051
+   2          #define led P2
+   3          void delay(void)
+   4          {
+   5   1        unsigned int i;
+   6   1        for(i=0;i<10000;i++);
+   7   1      }
+   8          
+   9          void main()
+  10          {
+  11   1        while(1)
+  12   1        {
+  13   2        led=0x00;
+  14   2        delay();
+  15   2        led=0xFF;
+  16   2        delay();
+  17   2        }
+  18   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     29    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
